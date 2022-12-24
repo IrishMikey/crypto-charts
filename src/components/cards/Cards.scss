@@ -1,0 +1,40 @@
+main {
+    .listHeader {
+        display: flex;
+        padding: 0 10px;
+
+        justify-content: space-between;
+        div {
+            display: flex;
+            gap: 5rem;
+        }
+    }
+    padding-top: 2rem;
+    .card {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px rgb(181, 181, 181) solid;
+        transition: all ease 1ms;
+        &:hover {
+            background-color: rgb(136, 0, 255);
+
+            color: white;
+        }
+        .coinImg {
+            max-width: 30px;
+            max-height: 30px;
+        }
+        .coinData {
+            display: flex;
+            margin-left: auto;
+            gap: 3rem;
+        }
+        .green {
+            color: rgb(86, 247, 86);
+        }
+        .red {
+            color: rgb(255, 57, 57);
+        }
+    }
+}
