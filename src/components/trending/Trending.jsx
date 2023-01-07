@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios  from "axios";
+import axios from "axios";
 
 import "./Trending.css";
 const Trending = () => {
@@ -18,28 +18,25 @@ const Trending = () => {
       });
   }, []);
 
-  console.log(data)
-  
-  if(!data) return null
-  console.log()
+  console.log(data);
+
+  if (!data) return null;
+  console.log();
 
   return (
-    <>
+    <section className="trending">
       <h2>Trending</h2>
-      <div className="trendingCard">
-        <div className="image">
-            <img src={data.coins[0].item.thumb} alt="" />
-        </div>
-        <div>
-          <h5>{data.coins[0].item.name}</h5>
-          <p>$45,000</p>
-        </div>
-        <div>
-          <p>Arrow</p>
-          <p>3.5% </p>
-        </div>
+
+      <div className="trendingCards">
+        {data.coins.map((coin) => (
+          <div key={coin.item.id} className="trendingCard">
+            <h5 className="coinName">{coin.item.name}</h5>
+          <img className="coinImg" src={coin.item.small} alt="coinImg" />
+<span className="coinPrice">{coin.item.price_btc.toFixed(5)}</span>
+          </div>
+        ))}
       </div>
-    </>
+    </section>
   );
 };
 

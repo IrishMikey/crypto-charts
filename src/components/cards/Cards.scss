@@ -1,4 +1,4 @@
-main {
+section {
     .listHeader {
         display: flex;
         padding: 0 10px;
@@ -14,7 +14,7 @@ main {
         display: flex;
         align-items: center;
         padding: 10px;
-        border-bottom: 1px rgb(181, 181, 181) solid;
+        border-top: 1px rgb(181, 181, 181) solid;
         transition: all ease 1ms;
         &:hover {
             background-color: rgb(136, 0, 255);

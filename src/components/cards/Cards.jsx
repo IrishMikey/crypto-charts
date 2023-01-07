@@ -22,9 +22,9 @@ const Cards = () => {
   if (!data) return null;
 
   return (
-    <main className="container">
+    <section >
       <div className="listHeader">
-        <p>Coin</p>
+        <p>Top Coins</p>
         <div>
           <p>Price</p>
           <p>24hr</p>
@@ -48,7 +48,7 @@ const Cards = () => {
           </div>
         </div>
       ))}
-    </main>
+    </section>
   );
 };
 export default Cards;

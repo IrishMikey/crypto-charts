@@ -1,38 +1,38 @@
-main {
+section {
   padding-top: 2rem;
 }
-main .listHeader {
+section .listHeader {
   display: flex;
   padding: 0 10px;
   justify-content: space-between;
 }
-main .listHeader div {
+section .listHeader div {
   display: flex;
   gap: 5rem;
 }
-main .card {
+section .card {
   display: flex;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px rgb(181, 181, 181) solid;
+  border-top: 1px rgb(181, 181, 181) solid;
   transition: all ease 1ms;
 }
-main .card:hover {
+section .card:hover {
   background-color: rgb(136, 0, 255);
   color: white;
 }
-main .card .coinImg {
+section .card .coinImg {
   max-width: 30px;
   max-height: 30px;
 }
-main .card .coinData {
+section .card .coinData {
   display: flex;
   margin-left: auto;
   gap: 3rem;
 }
-main .card .green {
+section .card .green {
   color: rgb(86, 247, 86);
 }
-main .card .red {
+section .card .red {
   color: rgb(255, 57, 57);
 }

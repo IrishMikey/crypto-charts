@@ -1,5 +1,22 @@
-.trendingCard {
+.trending {
+  padding-left: 10px;
+}
+.trending .trendingCards {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  justify-content: center;
+  gap: 20px;
+}
+.trending .trendingCards .trendingCard {
+  min-width: 120px;
   background-color: grey;
   border-radius: 20px;
   text-align: center;
+}
+
+@media (min-width: 1120px) {
+  .trendingCards {
+    overflow-y: hidden;
+  }
 }
