@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Card from "./Card";
 
 import "./Cards.css";
 const Cards = () => {
@@ -19,36 +20,31 @@ const Cards = () => {
       });
   }, []);
 
-  if (!data) return null;
+  console.log(data);
+  if (data === null) return null;
 
   return (
-    <section >
-      <div className="listHeader">
-        <p>Top Coins</p>
-        <div>
-          <p>Price</p>
-          <p>24hr</p>
-        </div>
-      </div>
-      {data.map((coin) => (
-        <div className="card" key={coin.name}>
-          <img className="coinImg" src={coin.image} alt="coinImg" />
-          <h5 className="coinName">{coin.name}</h5>
-          <div className="coinData">
-            <span className="coinPrice">€{coin.current_price}</span>
-            {coin.price_change_percentage_24h < 0 ? (
-              <span className="red coinChange">
-                {coin.price_change_percentage_24h.toFixed(2)}%
-              </span>
-            ) : (
-              <span className="green coinChange">
-                {coin.price_change_percentage_24h.toFixed(2)}%
-              </span>
-            )}
+    <>
+      {data && data.length > 0 && (
+        <section>
+          <div className="listHeader">
+            <p>Top Coins</p>
+            <div>
+              <p>Price</p>
+              <p>24hr</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </section>
+          <div>
+            {data.map((coin) => (
+              <div className="card" key={coin.name}>
+                <Card coin={coin} />
+                {console.log("coin" + coin)}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 export default Cards;
