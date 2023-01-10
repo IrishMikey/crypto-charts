@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
+import Coin from "../../routes/Coin";
+import { Link } from "react-router-dom";
 
 import "./Cards.css";
 const Cards = () => {
@@ -20,7 +22,7 @@ const Cards = () => {
       });
   }, []);
 
-  console.log(data);
+  console.log("data :" + data);
   if (data === null) return null;
 
   return (
@@ -36,10 +38,11 @@ const Cards = () => {
           </div>
           <div>
             {data.map((coin) => (
-              <div className="card" key={coin.name}>
-                <Card coin={coin} />
-                {console.log("coin" + coin)}
-              </div>
+              <Link to={`/coin/${coin.id}`} element={<Coin />} key={coin.id}>
+                <div className="card">
+                  <Card coin={coin} />
+                </div>
+              </Link>
             ))}
           </div>
         </section>

@@ -30,6 +30,9 @@ section .card .coinData {
   margin-left: auto;
   gap: 3rem;
 }
+section .card .coinName {
+  margin-left: 5px;
+}
 section .card .green {
   color: rgb(86, 247, 86);
 }

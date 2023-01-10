@@ -1,7 +1,6 @@
 import React from "react";
 
 const Card = (props) => {
-  console.log("props" + JSON.stringify(props.coin.image));
   return (
     <>
       <img className="coinImg" src={props.coin.image} alt="coinImg" />
