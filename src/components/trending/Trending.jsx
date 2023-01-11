@@ -5,7 +5,8 @@ import Coin from "../../routes/Coin";
 import "./Trending.css";
 const Trending = () => {
   const [trending, setTrending] = useState(null);
-  // const [isLoaded, setIsLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   // const [error, setError] = useState(null);
 
   // const [prices, setPrices] = useState(null);
@@ -13,10 +14,11 @@ const Trending = () => {
 
   useEffect(() => {
     const getTrending = async () => {
+      setLoading(true);
       try {
         const resPost = await axios.get(url);
         setTrending(resPost.data);
-        console.log("resPost.data :" + resPost.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -58,27 +60,41 @@ const Trending = () => {
   if (!trending) return null;
 
   return (
-    <section className="trending">
-      <h2>Trending</h2>
-
-      <div className="trendingCards">
-        {trending.coins.map((coin) => (
-
-          <Link to={`/coin/${coin.item.id}`} element={<Coin />} key={coin.item.id}>
-            <div className="trendingCard">
-              <h5 className="coinName">{coin.item.name}</h5>
-              <img className="coinImg" src={coin.item.small} alt="coinImg" />
-              <span className="coinPrice">
-                {coin.item.price_btc.toFixed(5)}
-              </span>
-              {/* {prices.filter(price => price.includes(coin.name)).map(filteredCoin => (
+    <div>
+      {loading ? (
+        <div className="loader"></div>
+      ) : (
+        <section className="trending">
+          <h2>Trending</h2>
+          <div className="trendingCards">
+            {trending.coins.map((coin) => (
+              <Link
+                to={`/coin/${coin.item.id}`}
+                element={<Coin />}
+                key={coin.item.id}
+              >
+                <div className="trendingCard">
+                  <div className="cardRowA">
+                    <img
+                      className="coinImg"
+                      src={coin.item.small}
+                      alt="coinImg"
+                    />
+                    <h5 className="coinName">{coin.item.name}</h5>
+                  </div>
+                  <span className="coinPrice">
+                    {coin.item.price_btc.toFixed(5)}
+                  </span>
+                  {/* {prices.filter(price => price.includes(coin.name)).map(filteredCoin => (
             <p>{filteredCoin}</p>
-          ))} */}
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
+          ))}  */}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
   );
 };
 

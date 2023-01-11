@@ -4,23 +4,41 @@
 .trending .trendingCards {
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
   gap: 20px;
+  padding: 2px 5px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.trending .trendingCards::-webkit-scrollbar {
+  display: none;
 }
 .trending .trendingCards .trendingCard {
-  min-width: 120px;
   background-color: grey;
   border-radius: 20px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  min-height: 120px;
+  min-width: 120px;
+}
+.trending .trendingCards .trendingCard .cardRowA {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.trending .trendingCards .trendingCard .cardRowA .coinImg {
+  max-height: 35px;
+  max-width: 35px;
+  border-radius: 15px;
+}
+.trending .trendingCards .trendingCard .cardRowA .coinName {
+  margin: 0;
 }
 
 @media (min-width: 1120px) {
   .trendingCards {
     justify-content: center;
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
-  }
-  .trendingCards::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    overflow-x: hidden !important;
   }
 }

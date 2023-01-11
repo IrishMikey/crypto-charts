@@ -1,28 +1,47 @@
 .trending {
     padding-left: 10px;
-
     .trendingCards {
         display: flex;
         flex-direction: row;
-        overflow-x: scroll;
         gap: 20px;
+        padding: 2px 5px;
 
+        overflow-x: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        
         .trendingCard {
-            min-width: 120px;
             background-color: grey;
             border-radius: 20px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            padding: 8px;
+            min-height: 120px;
+            min-width: 120px;
+
+            .cardRowA {
+                display: flex;
+                align-items: center;
+
+                gap: 5px;
+                .coinImg {
+                    max-height: 35px;
+                    max-width: 35px;
+                    border-radius: 15px;
+                }
+                .coinName {
+                    margin: 0;
+                }
+            }
         }
     }
 }
 @media (min-width: 1120px) {
     .trendingCards {
         justify-content: center;
-
-        -ms-overflow-style: none; /* Internet Explorer 10+ */
-        scrollbar-width: none; /* Firefox */
-        &::-webkit-scrollbar {
-            display: none; /* Safari and Chrome */
-        }
+        overflow-x: hidden !important;
     }
 }
