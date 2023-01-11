@@ -3,13 +3,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Coin from "../../routes/Coin";
 import "./Trending.css";
+
 const Trending = () => {
   const [trending, setTrending] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // const [error, setError] = useState(null);
-
   // const [prices, setPrices] = useState(null);
+
   const url = "https://api.coingecko.com/api/v3/search/trending";
 
   useEffect(() => {
@@ -65,7 +66,8 @@ const Trending = () => {
         <div className="loader"></div>
       ) : (
         <section className="trending">
-          <h2>Trending</h2>
+            <h2  >Trending</h2>
+        
           <div className="trendingCards">
             {trending.coins.map((coin) => (
               <Link
