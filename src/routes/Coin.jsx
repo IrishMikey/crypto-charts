@@ -17,6 +17,7 @@ function Coin() {
       .then((res) => {
         setCoin(res.data);
         setLoading(false);
+        console.log(res.data)
       })
       .catch((err) => {
         console.error(err);
@@ -65,7 +66,7 @@ function Coin() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td>
                     {coin.market_data
                       ?.price_change_percentage_1h_in_currency ? (
@@ -132,12 +133,12 @@ function Coin() {
                       </p>
                     ) : null}
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
           <div className="content">
-            <div className="stats">
+            {/* <div className="stats">
               <div className="left">
                 <div className="row">
                   <h4>24 Hour Low</h4>
@@ -166,7 +167,7 @@ function Coin() {
                   ) : null}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="content">

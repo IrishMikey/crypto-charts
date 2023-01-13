@@ -15,12 +15,14 @@ const Cards = () => {
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=false";
 
     useEffect(() => {
+
       setLoading(true);
       axios
         .get(url)
         .then((res) => {
           setData(res.data);
           setLoading(false);
+
         })
         .catch((err) => {
           console.error(err);
@@ -28,7 +30,6 @@ const Cards = () => {
     }, []);
   
 
-  console.log("data :" + data);
   if (data === null) return null;
 
   return (
