@@ -5,67 +5,70 @@ import Coin from "../../routes/Coin";
 import "./Trending.css";
 
 const Trending = () => {
-  const [trending, setTrending] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [trending, setTrending] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // const [error, setError] = useState(null);
-  const [prices, setPrices] = useState(null);
+  const [error, setError] = useState(null);
+  const [prices, setPrices] = useState([]);
 
   const url = "https://api.coingecko.com/api/v3/search/trending";
-  
-
-  useEffect(() => {
-    const getTrending = async () => {
-      try {
-        const resPost = await axios.get(url);
-        setTrending(resPost.data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getTrending();
-
-  }, []);
+  // const urlPrice = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur';
 
   //Get coin id's and make a request to find the EUR price
-  const searchCoin = () => {
-    let idString = "";
-    let coinIds = trending.coins.map((coin) => coin.item.id);
-
-    for (let index = 0; index < coinIds.length; index++) {
-      if (index !== coinIds.length - 1) {
-        idString += coinIds[index] + "%2C";
-      } else {
-        idString += coinIds[index];
+  const searchCoin = (data) => {
+    if (data) {
+      let idString = "";
+      let coinIds = data.coins.map((coin) => coin.item.id);
+      console.log(coinIds);
+      for (let index = 0; index < coinIds.length; index++) {
+        if (index !== coinIds.length - 1) {
+          idString += coinIds[index] + "%2C";
+        } else {
+          idString += coinIds[index];
+        }
       }
+      console.log(idString);
+      const urlPrice =
+        "https://api.coingecko.com/api/v3/simple/price?ids=" +
+        idString +
+        "&vs_currencies=EUR";
+
+      const getPrices = async () => {
+        try {
+          const resPost = await axios(urlPrice);
+          Object.entries(resPost.data).forEach(data => {
+            console.log(JSON.stringify(data))
+          });
+          setPrices(resPost.data);
+          // console.log(Object.entries(resPost.data));
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      getPrices();
+      console.log(prices)
     }
-
-      // "https://api.coingecko.com/api/v3/simple/price?ids=" +
-      // idString +
-      // "&vs_currencies=EUR";
-
-    const getPrices = () => {
-      try {
-        const resPost = axios(urlPrice);
-        setPrices(resPost.data);
-        console.log(resPost.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getPrices();
   };
 
-  
   useEffect(() => {
-    if (trending) {
-      searchCoin();
-    }
+    const fetchTrending = async () => {
+      console.count("fetch : ");
+      setLoading(true);
+      try {
+        const res = await axios(url);
+        setTrending(res.data);
+        console.log(res.data)
+        setLoading(false);
+        searchCoin(res.data);
+      } catch (error) {
+        setError(error);
+        console.log(error);
+      }
+    };
+    fetchTrending();
   }, []);
 
-  console.log(trending);
-  console.log(prices);
+  if (!trending) return null;
   return (
     <div>
       {loading ? (
@@ -90,14 +93,15 @@ const Trending = () => {
                     />
                     <h5 className="coinName">{coin.item.name}</h5>
                   </div>
-                  <span className="coinPrice">{coin.item.price_btc}</span>
+                  {/* <span className="coinPrice">{coin.item.price_btc}</span>
                   {prices ? (
                     <div>
                       <p>tr</p>
-                    </div>
-                  ) : (
-                    <p>false</p>
-                  )}
+                      {/* <p>{prices.filter(price => price)}</p> */}
+                    {/* </div> */}
+                  {/* ) : ( */}
+                    {/* <p>false</p> */}
+                  {/* )} */} 
                 </div>
               </Link>
             ))}
