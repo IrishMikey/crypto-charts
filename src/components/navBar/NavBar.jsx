@@ -1,16 +1,20 @@
 import React from "react";
 import "./NavBar.css";
-import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <Link to="/">
-      <div className="header">
-        <div className="container">
-          <h1>CryptoCharts</h1>
+    <div className="header">
+      <div className="container">
+        <div className="headerContent">
+          <a id="home" href="/">
+            <h1>CryptoCharts</h1>
+          </a>
+          <a id="return" href="http://www.mikey.ie">
+            Back to Mikey.ie
+          </a>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

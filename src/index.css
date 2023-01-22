@@ -12,7 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(22, 22, 22);
   color: white;
-  min-height: 100vh;
+  height: 100vh;
 
 }
 
@@ -21,9 +21,9 @@ code {
     monospace;
 }
 #root{
-  /* display: flex;
-  flex-direction: column; */
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 a {
   text-decoration: none;

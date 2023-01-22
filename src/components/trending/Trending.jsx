@@ -19,7 +19,7 @@ const Trending = () => {
     if (data) {
       let idString = "";
       let coinIds = data.coins.map((coin) => coin.item.id);
-      console.log(coinIds);
+      // console.log(coinIds);
       for (let index = 0; index < coinIds.length; index++) {
         if (index !== coinIds.length - 1) {
           idString += coinIds[index] + "%2C";
@@ -27,7 +27,7 @@ const Trending = () => {
           idString += coinIds[index];
         }
       }
-      console.log(idString);
+      // console.log(idString);
       const urlPrice =
         "https://api.coingecko.com/api/v3/simple/price?ids=" +
         idString +
@@ -36,9 +36,9 @@ const Trending = () => {
       const getPrices = async () => {
         try {
           const resPost = await axios(urlPrice);
-          Object.entries(resPost.data).forEach(data => {
-            console.log(JSON.stringify(data))
-          });
+          // Object.entries(resPost.data).forEach(data => {
+          //   console.log(JSON.stringify(data))
+          // });
           setPrices(resPost.data);
           // console.log(Object.entries(resPost.data));
         } catch (error) {
@@ -46,7 +46,7 @@ const Trending = () => {
         }
       };
       getPrices();
-      console.log(prices)
+      // console.log(prices)
     }
   };
 
@@ -57,7 +57,7 @@ const Trending = () => {
       try {
         const res = await axios(url);
         setTrending(res.data);
-        console.log(res.data)
+        // console.log(res.data)
         setLoading(false);
         searchCoin(res.data);
       } catch (error) {

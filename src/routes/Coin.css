@@ -85,7 +85,9 @@
   box-shadow: 0px 0px 12px #18191b;
   border-radius: 8px;
 }
-
+.about{line-height: 1.6;}
+.green{color: rgb(3, 203, 3);}
+.red{color: red;}
 .rank {
   margin: 0.5 0;
 }
@@ -99,14 +101,19 @@
 }
 
 .info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+}
+.info .coinInfo {
+  display: flex;
 }
 
 .info .coin-heading {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 1rem 0;
+  gap: 5px;
 }
 
 .info .coin-price {
