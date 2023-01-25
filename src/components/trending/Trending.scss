@@ -5,14 +5,14 @@
         flex-direction: row;
         gap: 20px;
         padding: 2px 5px;
-
         overflow-x: scroll;
         scrollbar-width: none;
-        -ms-overflow-style: none;
+        padding: 5px 0 5px 5px;
+        -ms-overflow1-style: none;
         &::-webkit-scrollbar {
             display: none;
         }
-        
+
         .trendingCard {
             background-color: grey;
             border-radius: 20px;
@@ -21,7 +21,14 @@
             padding: 8px;
             height: 120px;
             width: 120px;
-
+            justify-content: center;
+            transition: all ease 0.3s;
+            &:hover {
+                transform: scale(1.05);
+            }
+            &:active {
+                transform: scale(0.95);
+            }
             .cardRowA {
                 display: flex;
                 flex-direction: column;
@@ -29,9 +36,9 @@
 
                 gap: 5px;
                 .coinImg {
-                    max-height: 35px;
-                    max-width: 35px;
-                    border-radius: 15px;
+                    max-height: 45px;
+                    max-width: 45px;
+                    border-radius: 20px;
                 }
                 .coinName {
                     margin: 0;
