@@ -69,7 +69,7 @@ const Trending = () => {
     fetchTrending();
   }, []);
 
-  if (!trending || error) return <NotFound/>;
+  if (!trending ) return null;
   return (
     <div>
       {loading ? (

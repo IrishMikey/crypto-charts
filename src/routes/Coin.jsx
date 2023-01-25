@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Coin.css";
 import { NotFound } from "../components/NotFound";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 function Coin() {
@@ -37,6 +38,10 @@ function Coin() {
         <div className="loader">Loading...</div>
       ) : (
         <div className="coin-container">
+          <Link to="/" className="rank">
+            <span className="rank-btn">Home</span>
+          </Link>
+
           <div className="content">
             <h1>{coin.name}</h1>
           </div>
