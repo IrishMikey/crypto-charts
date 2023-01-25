@@ -33,9 +33,11 @@ section .card .coinData {
 section .card .coinName {
   margin-left: 5px;
 }
-section .card .green {
+
+.green {
   color: rgb(86, 247, 86);
 }
-section .card .red {
+
+.red {
   color: rgb(255, 57, 57);
 }

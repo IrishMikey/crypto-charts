@@ -3,52 +3,53 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Coin from "../../routes/Coin";
 import "./Trending.css";
+import { NotFound } from "../NotFound";
 
 const Trending = () => {
   const [trending, setTrending] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState(null);
-  const [prices, setPrices] = useState([]);
+  // const [prices, setPrices] = useState([]);
 
   const url = "https://api.coingecko.com/api/v3/search/trending";
   // const urlPrice = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur';
 
   //Get coin id's and make a request to find the EUR price
-  const searchCoin = (data) => {
-    if (data) {
-      let idString = "";
-      let coinIds = data.coins.map((coin) => coin.item.id);
-      // console.log(coinIds);
-      for (let index = 0; index < coinIds.length; index++) {
-        if (index !== coinIds.length - 1) {
-          idString += coinIds[index] + "%2C";
-        } else {
-          idString += coinIds[index];
-        }
-      }
-      // console.log(idString);
-      const urlPrice =
-        "https://api.coingecko.com/api/v3/simple/price?ids=" +
-        idString +
-        "&vs_currencies=EUR";
+  // const searchCoin = (data) => {
+  //   if (data) {
+  //     let idString = "";
+  //     let coinIds = data.coins.map((coin) => coin.item.id);
+  //     // console.log(coinIds);
+  //     for (let index = 0; index < coinIds.length; index++) {
+  //       if (index !== coinIds.length - 1) {
+  //         idString += coinIds[index] + "%2C";
+  //       } else {
+  //         idString += coinIds[index];
+  //       }
+  //     }
+  //     // console.log(idString);
+  //     const urlPrice =
+  //       "https://api.coingecko.com/api/v3/simple/price?ids=" +
+  //       idString +
+  //       "&vs_currencies=EUR";
 
-      const getPrices = async () => {
-        try {
-          const resPost = await axios(urlPrice);
-          // Object.entries(resPost.data).forEach(data => {
-          //   console.log(JSON.stringify(data))
-          // });
-          setPrices(resPost.data);
-          // console.log(Object.entries(resPost.data));
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      getPrices();
-      // console.log(prices)
-    }
-  };
+  //     const getPrices = async () => {
+  //       try {
+  //         const resPost = await axios(urlPrice);
+  //         // Object.entries(resPost.data).forEach(data => {
+  //         //   console.log(JSON.stringify(data))
+  //         // });
+  //         setPrices(resPost.data);
+  //         // console.log(Object.entries(resPost.data));
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     };
+  //     getPrices();
+  //     // console.log(prices)
+  //   }
+  // };
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -57,9 +58,9 @@ const Trending = () => {
       try {
         const res = await axios(url);
         setTrending(res.data);
-        // console.log(res.data)
+        console.log(res.data)
         setLoading(false);
-        searchCoin(res.data);
+        // searchCoin(res.data);
       } catch (error) {
         setError(error);
         console.log(error);
@@ -68,7 +69,7 @@ const Trending = () => {
     fetchTrending();
   }, []);
 
-  if (!trending) return null;
+  if (!trending || error) return <NotFound/>;
   return (
     <div>
       {loading ? (

@@ -9,14 +9,13 @@ import { Link } from "react-router-dom";
 import "./Cards.css";
 const Cards = () => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const url =
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1&sparkline=false";
 
     useEffect(() => {
 
-      setLoading(true);
       axios
         .get(url)
         .then((res) => {
@@ -35,7 +34,7 @@ const Cards = () => {
   return (
     <>
       {loading ? (
-        <div className="loader"></div>
+        <div className="loader">loading...</div>
       ) : (
         <section>
           <Trending />
